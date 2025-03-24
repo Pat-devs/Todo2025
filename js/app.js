@@ -18,11 +18,18 @@ function addTodoHandler() {
         errorEl.textContent = errorMessage
         
         return // if there are errors, return will prevent execution of code below this line
+    } else if (todoText.length < 3) {
+        let errorMessage = "Todo item cannot be less than 3 characers!"
+        errorEl.textContent = errorMessage
+        
+        return
     }
+    // 3. clear the error message
+    errorEl.innerText = ""
 
-    // 3. clear the input field
+    // 4. clear the input field
     inputTodoEl.value = ""
-    // 4. do something with the input text...
+    // 3. do something with the input text...
     console.log(todoText)
     
 
