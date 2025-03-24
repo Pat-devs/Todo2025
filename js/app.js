@@ -1,14 +1,37 @@
 // Grab html elements:
 const inputTodoEl = document.getElementById("input-todo-text")
 const addTodoButtonEl = document.getElementById("add-todo-button")
+const todoItemsContainer = document.getElementById("todo-items")
+
+
 
 // Add event to the "form"
 addTodoButtonEl.addEventListener("click", addTodoHandler)
 
 // Add todo item to the todolist
 function addTodoHandler() {
-    console.log(inputTodoEl.value)
+    // 1. read input value
+    let todoText = inputTodoEl.value
+    // 2. clear the input field
+    inputTodoEl.value = ""
+    // 3. do something with the input text...
+    console.log(todoText)
+    
+
+    //todoItemsContainer.innerHTML += todoText
+    // Manually create the element and put text in it to prevent XSS-attacks
+
+    createTodoElements(todoText)
+
+
+    
 }
 
 
-//const test = addTodoHandler
+function createTodoElements(todoText) {
+    
+    const myElement = document.createElement("h1")
+    myElement.innerText = todoText
+
+    todoItemsContainer.append(myElement)
+}
