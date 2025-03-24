@@ -30,12 +30,6 @@ function addTodoHandler() {
     // 4. clear the input field
     inputTodoEl.value = ""
     // 3. do something with the input text...
-    console.log(todoText)
-    
-
-    //todoItemsContainer.innerHTML += todoText
-    // Manually create the element and put text in it to prevent XSS-attacks
-
     createTodoElements(todoText)
 
 
@@ -44,9 +38,22 @@ function addTodoHandler() {
 
 // creates a todo element and sets its text
 function createTodoElements(todoText) {
-  
-    const myElement = document.createElement("p")
-    myElement.innerText = todoText
 
-    todoItemsContainer.append(myElement)
+    const todoItemEl = document.createElement("li")
+    todoItemEl.innerText = todoText
+
+    const todoItemRemoveButton = document.createElement("button")
+    todoItemRemoveButton.textContent = "Remove!"
+
+    todoItemEl.append(todoItemRemoveButton)
+
+    todoItemsContainer.append(todoItemEl) 
+
+    // add remove todo event handler
+    todoItemRemoveButton.addEventListener("click", function() {
+        //console.warn("I want to remove " + todoItemEl.textContent)
+
+        todoItemEl.remove() // remove only this todoitem
+    })
 }
+
